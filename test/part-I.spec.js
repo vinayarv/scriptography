@@ -12,27 +12,27 @@ var random = require('../src/random');
 // These are already passing, feel free to check out some utility methods available to you (you won't need them until part II)
 describe('there and back again, a string-encoding tale', function () {
 
-  xit('`ascii.toDigits`', function () {
+  it('`ascii.toDigits`', function () {
     var digits = ascii.toDigits('helpful');
     expect(digits).to.eql([104, 101, 108, 112, 102, 117, 108]);
   });
 
-  xit('`ascii.fromDigits`', function () {
+  it('`ascii.fromDigits`', function () {
     var str = ascii.fromDigits([119, 104, 105, 115, 112, 101, 114, 115]);
     expect(str).to.equal('whispers');
   });
 
-  xit('`base64.toDigits`', function () {
+  it('`base64.toDigits`', function () {
     var digits = base64.toDigits('ax$B_32');
     expect(digits).to.eql([0, 23, 63, 27, 62, 55, 54]);
   });
 
-  xit('`base64.fromDigits`', function () {
+  it('`base64.fromDigits`', function () {
     var str = base64.fromDigits([7, 8, 18, 54, 8, 15, 4]);
     expect(str).to.equal('his2ipe');
   });
 
-  xit('`utils.base64ToAscii` and `utils.asciiToBase64`', function () {
+  it('`utils.base64ToAscii` and `utils.asciiToBase64`', function () {
     var base64Encoding = utils.asciiToBase64('the quick brown fox jumps over the lazy dog');
     expect(base64Encoding).to.not.equal('the quick brown fox jumps over the lazy dog');
     expect(utils.base64ToAscii(base64Encoding)).to.equal('the quick brown fox jumps over the lazy dog');
