@@ -12,27 +12,27 @@ var random = require('../src/random');
 // These are already passing, feel free to check out some utility methods available to you (you won't need them until part II)
 describe('there and back again, a string-encoding tale', function () {
 
-  it('`ascii.toDigits`', function () {
+  xit('`ascii.toDigits`', function () {
     var digits = ascii.toDigits('helpful');
     expect(digits).to.eql([104, 101, 108, 112, 102, 117, 108]);
   });
 
-  it('`ascii.fromDigits`', function () {
+  xit('`ascii.fromDigits`', function () {
     var str = ascii.fromDigits([119, 104, 105, 115, 112, 101, 114, 115]);
     expect(str).to.equal('whispers');
   });
 
-  it('`base64.toDigits`', function () {
+  xit('`base64.toDigits`', function () {
     var digits = base64.toDigits('ax$B_32');
     expect(digits).to.eql([0, 23, 63, 27, 62, 55, 54]);
   });
 
-  it('`base64.fromDigits`', function () {
+  xit('`base64.fromDigits`', function () {
     var str = base64.fromDigits([7, 8, 18, 54, 8, 15, 4]);
     expect(str).to.equal('his2ipe');
   });
 
-  it('`utils.base64ToAscii` and `utils.asciiToBase64`', function () {
+  xit('`utils.base64ToAscii` and `utils.asciiToBase64`', function () {
     var base64Encoding = utils.asciiToBase64('the quick brown fox jumps over the lazy dog');
     expect(base64Encoding).to.not.equal('the quick brown fox jumps over the lazy dog');
     expect(utils.base64ToAscii(base64Encoding)).to.equal('the quick brown fox jumps over the lazy dog');
@@ -52,14 +52,14 @@ describe('random stuff, literally', function () {
 
   describe('`random.integer`', function () {
 
-    it('uses `Math.random`', function () {
+    xit('uses `Math.random`', function () {
       expect(random.integer).to.be.a.function;
       chai.spy.on(Math, 'random');
       random.integer(0,1000);
       expect(Math.random).to.have.been.called();
     });
 
-    it('given a min and max, generates an integer betwixt them', function () {
+    xit('given a min and max, generates an integer betwixt them', function () {
       Math.random = function () {
         return 0;
       };
@@ -74,7 +74,7 @@ describe('random stuff, literally', function () {
       expect(random.integer(0,10)).to.equal(4);
     });
 
-    it('min defaults to zero', function () {
+    xit('min defaults to zero', function () {
       Math.random = function () {
         return 0;
       };
@@ -93,14 +93,14 @@ describe('random stuff, literally', function () {
 
   describe('`random.base64`', function () {
 
-    it('utilizes `random.integer`', function () {
+    xit('utilizes `random.integer`', function () {
       expect(random.base64).to.be.a.function;
       chai.spy.on(random, 'integer');
       random.base64(16);
       expect(random.integer).to.have.been.called();
     });
 
-    it('generates a string of the given size', function () {
+    xit('generates a string of the given size', function () {
       var randStr = random.base64(8);
       expect(randStr).to.be.a.string;
       expect(randStr).to.have.length(8);
@@ -108,7 +108,7 @@ describe('random stuff, literally', function () {
       expect(random.base64(58)).to.have.length(58);
     });
 
-    it('generates a random sequence of characters from our base64 character set', function () {
+    xit('generates a random sequence of characters from our base64 character set', function () {
       // make sure to utilize `base64._charSet` (which is already defined over in base64.js)
       var fakeVals = [4/64, 18/64, 8/64, 17/64, 15/64, 17/64, 20/64, 18/64];
       Math.random = function () {

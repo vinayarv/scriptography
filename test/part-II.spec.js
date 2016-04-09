@@ -14,14 +14,14 @@ describe('hashing it out', function () {
 
   describe('`hash.simple._pad`', function () {
 
-    it('increases the string to at least the given length', function () {
+    xit('increases the string to at least the given length', function () {
       expect(hash.simple._pad).to.be.a.function;
       var padded = hash.simple._pad('words', 10);
       expect(padded).to.be.a.string;
       expect(padded).to.have.length(10);
     });
 
-    it('does so by concatenating the string to its reverse until it\'s big enough', function () {
+    xit('does so by concatenating the string to its reverse until it\'s big enough', function () {
       expect(hash.simple._pad('something', 18)).to.equal('somethinggnihtemos');
       // will go OVER the pad length
       expect(hash.simple._pad('foobar', 7)).to.equal('foobarraboof');
@@ -31,13 +31,13 @@ describe('hashing it out', function () {
 
   describe('`hash.simple._partition`', function () {
 
-    it('divides the string into n pieces, each of the given length', function () {
+    xit('divides the string into n pieces, each of the given length', function () {
       expect(hash.simple._partition).to.be.a.function;
       expect(hash.simple._partition('abc', 1)).to.eql(['a', 'b', 'c']);
       expect(hash.simple._partition('somethinglongernow', 3)).to.eql(['som', 'eth', 'ing', 'lon', 'ger', 'now']);
     });
 
-    it('the final string is the remainder, and may be less than the given length', function () {
+    xit('the final string is the remainder, and may be less than the given length', function () {
       expect(hash.simple._partition('odd', 2)).to.eql(['od', 'd']);
       expect(hash.simple._partition('thishasanevennumberofletters', 5)).to.eql(['thish', 'asane', 'vennu', 'mbero', 'flett', 'ers']);
     });
@@ -46,14 +46,14 @@ describe('hashing it out', function () {
 
   describe('`hash.simple._combine`', function () {
 
-    it('accepts two equal length base64 strings and returns one of the same length', function () {
+    xit('accepts two equal length base64 strings and returns one of the same length', function () {
       expect(hash.simple._combine).to.be.a.function;
       var combined = hash.simple._combine('foo', 'bar');
       expect(combined).to.be.a.string;
       expect(combined).to.have.length(3);
     });
 
-    it('utilizes `base64.toDigits` and `base64.fromDigits`', function () {
+    xit('utilizes `base64.toDigits` and `base64.fromDigits`', function () {
       chai.spy.on(base64, 'toDigits');
       chai.spy.on(base64, 'fromDigits');
       hash.simple._combine('elephant', 'anteater');
@@ -61,7 +61,7 @@ describe('hashing it out', function () {
       expect(base64.fromDigits).to.have.been.called();
     });
 
-    it('combines the strings by XORing their digits then converting them back to base64', function () {
+    xit('combines the strings by XORing their digits then converting them back to base64', function () {
       // read more about XOR here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators
       // any number XORed with itself outputs 0, e.g. 1034 ^ 1034 === 0, and 0 corresponds to base64 character 'a', so we get all 'a's
       expect(hash.simple._combine('Tajikistan', 'Tajikistan')).to.equal('aaaaaaaaaa');
@@ -73,14 +73,14 @@ describe('hashing it out', function () {
 
   describe('`hash.simple.run`', function () {
 
-    it('utilizes `utils.asciiToBase64` on the plaintext input', function () {
+    xit('utilizes `utils.asciiToBase64` on the plaintext input', function () {
       expect(hash.simple.run).to.be.a.function;
       chai.spy.on(utils, 'asciiToBase64');
       hash.simple.run('this is some plain text', 8);
       expect(utils.asciiToBase64).to.have.been.called.with('this is some plain text');
     });
 
-    it('utilizes `._pad`, `._partition`, and `._combine`', function () {
+    xit('utilizes `._pad`, `._partition`, and `._combine`', function () {
       chai.spy.on(hash.simple, '_pad');
       chai.spy.on(hash.simple, '_partition');
       chai.spy.on(hash.simple, '_combine');
@@ -100,7 +100,7 @@ describe('hashing it out', function () {
       // expect(hash.simple._combine).to.have.been.called.with('UbWb7aJa', 'Lb4b0b');
     });
 
-    it('converts an ascii string (plaintext) to a hashed base64 string of the given length', function () {
+    xit('converts an ascii string (plaintext) to a hashed base64 string of the given length', function () {
       var hashedResult = hash.simple.run('I solemny swear I am up to no good', 10);
       expect(hashedResult).to.have.length(10);
       // this specific result is particular to our simple hashing algorithm
@@ -114,14 +114,14 @@ describe('hashing it out', function () {
 
   describe('`hash.hmac`', function () {
 
-    it('runs the given hashing algorithm using the secret key, plaintext, and given length', function () {
+    xit('runs the given hashing algorithm using the secret key, plaintext, and given length', function () {
       expect(hash.hmac).to.be.a.function;
       var spy = chai.spy();
       hash.hmac(spy, 'tongiscool', 'a plain text message in here', 16);
       expect(spy).to.have.been.called();
     });
 
-    it('defaults to using our simple hashing algorithm', function () {
+    xit('defaults to using our simple hashing algorithm', function () {
       chai.spy.on(hash.simple, 'run');
       var hashedResult = hash.hmac('tongiscool', 'a plain text message in here', 16);
       expect(hash.simple.run).to.have.been.called();
@@ -132,7 +132,7 @@ describe('hashing it out', function () {
 
   describe('`hash.pbkdf2`', function () {
 
-    it('utilizes `hash.hmac` and given algorithm n times for n rounds', function () {
+    xit('utilizes `hash.hmac` and given algorithm n times for n rounds', function () {
       chai.spy.on(hash, 'hmac');
       var spy = chai.spy();
       hash.pbdkf2(spy, 'plain old text you know?', 'NaCl', 9, 4);
@@ -142,11 +142,11 @@ describe('hashing it out', function () {
       expect(spy).to.have.been.called.exactly(9);
     });
 
-    it('produces a hashed result given a hashing algorithm, plaintext, salt, an amount of iterations, and an output size', function () {
+    xit('produces a hashed result given a hashing algorithm, plaintext, salt, an amount of iterations, and an output size', function () {
       expect(hash.pbdkf2(hash.simple.run, 'p@ssword', 'amanaplanacanalpanama', 1000, 16)).to.equal('TbebGb2aUbqaaafa');
     });
 
-    it('defaults to using our simple hashing algorithm', function () {
+    xit('defaults to using our simple hashing algorithm', function () {
       chai.spy.on(hash.simple, 'run');
       hash.pbdkf2('p@ssword', 'amanaplanacanalpanama', 1000, 16);
       expect(hash.simple.run).to.have.been.called();
