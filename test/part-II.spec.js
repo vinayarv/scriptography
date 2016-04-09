@@ -4,11 +4,11 @@ var chai = require('chai');
 chai.use(require('chai-spies'));
 var expect = chai.expect;
 
-var ascii = require('../src-solution/ascii');
-var base64 = require('../src-solution/base64');
-var utils = require('../src-solution/utils');
-var random = require('../src-solution/random');
-var hash = require('../src-solution/hash');
+var ascii = require('../src/ascii');
+var base64 = require('../src/base64');
+var utils = require('../src/utils');
+var random = require('../src/random');
+var hash = require('../src/hash');
 
 describe('hashing it out', function () {
 
