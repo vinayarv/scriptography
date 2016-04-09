@@ -13,7 +13,6 @@ ascii.toDigits = function (aStr) {
 
 ascii.fromDigits = function (digits) {
   var aStr = '';
-  var i = 0;
   digits.forEach(function (digit) {
     aStr += String.fromCharCode(digit);
   });
