@@ -5,6 +5,8 @@ var ascii = require('./ascii');
 
 var RSA = {};
 
+RSA._selectKeyPair = function () {};
+
 RSA.generateKeys = function () {};
 
 RSA.encrypt = function () {};
