@@ -4,20 +4,18 @@ var chai = require('chai');
 chai.use(require('chai-spies'));
 var expect = chai.expect;
 
-var ascii = require('../src/ascii');
 var base64 = require('../src/base64');
 var utils = require('../src/utils');
-var random = require('../src/random');
 var hash = require('../src/hash');
 
-describe('hashing it out', function () {
+describe('* PART II: hashing it out *', function () {
 
   describe('`hash.simple._pad`', function () {
 
     xit('increases the string to at least the given length', function () {
-      expect(hash.simple._pad).to.be.a.function;
+      expect(hash.simple._pad).to.be.a('function');
       var padded = hash.simple._pad('words', 10);
-      expect(padded).to.be.a.string;
+      expect(padded).to.be.a('string');
       expect(padded).to.have.length(10);
     });
 
@@ -25,6 +23,8 @@ describe('hashing it out', function () {
       expect(hash.simple._pad('something', 18)).to.equal('somethinggnihtemos');
       // will go OVER the pad length
       expect(hash.simple._pad('foobar', 7)).to.equal('foobarraboof');
+      // may have to do so multiple times
+      expect(hash.simple._pad('abc', 21)).to.equal('abccbacbacbacbacbacba');
     });
 
   });
@@ -32,7 +32,7 @@ describe('hashing it out', function () {
   describe('`hash.simple._partition`', function () {
 
     xit('divides the string into n pieces, each of the given length', function () {
-      expect(hash.simple._partition).to.be.a.function;
+      expect(hash.simple._partition).to.be.a('function');
       expect(hash.simple._partition('abc', 1)).to.eql(['a', 'b', 'c']);
       expect(hash.simple._partition('somethinglongernow', 3)).to.eql(['som', 'eth', 'ing', 'lon', 'ger', 'now']);
     });
@@ -47,9 +47,9 @@ describe('hashing it out', function () {
   describe('`hash.simple._combine`', function () {
 
     xit('accepts two equal length base64 strings and returns one of the same length', function () {
-      expect(hash.simple._combine).to.be.a.function;
+      expect(hash.simple._combine).to.be.a('function');
       var combined = hash.simple._combine('foo', 'bar');
-      expect(combined).to.be.a.string;
+      expect(combined).to.be.a('string');
       expect(combined).to.have.length(3);
     });
 
@@ -74,7 +74,7 @@ describe('hashing it out', function () {
   describe('`hash.simple.run`', function () {
 
     xit('utilizes `utils.asciiToBase64` on the plaintext input', function () {
-      expect(hash.simple.run).to.be.a.function;
+      expect(hash.simple.run).to.be.a('function');
       chai.spy.on(utils, 'asciiToBase64');
       hash.simple.run('this is some plain text', 8);
       expect(utils.asciiToBase64).to.have.been.called.with('this is some plain text');
@@ -100,7 +100,7 @@ describe('hashing it out', function () {
       // expect(hash.simple._combine).to.have.been.called.with('UbWb7aJa', 'Lb4b0b');
     });
 
-    xit('converts an ascii string (plaintext) to a hashed base64 string of the given length', function () {
+    xit('converts an ASCII string (plaintext) to a hashed base64 string of the given length', function () {
       var hashedResult = hash.simple.run('I solemny swear I am up to no good', 10);
       expect(hashedResult).to.have.length(10);
       // this specific result is particular to our simple hashing algorithm
@@ -115,13 +115,14 @@ describe('hashing it out', function () {
   describe('`hash.hmac`', function () {
 
     xit('runs the given hashing algorithm using the secret key, plaintext, and given length', function () {
-      expect(hash.hmac).to.be.a.function;
+      expect(hash.hmac).to.be.a('function');
       var spy = chai.spy();
       hash.hmac(spy, 'tongiscool', 'a plain text message in here', 16);
       expect(spy).to.have.been.called();
     });
 
     xit('defaults to using our simple hashing algorithm', function () {
+      // keep in mind that the key should be prepended to the plaintext
       chai.spy.on(hash.simple, 'run');
       var hashedResult = hash.hmac('tongiscool', 'a plain text message in here', 16);
       expect(hash.simple.run).to.have.been.called();

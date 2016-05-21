@@ -33,6 +33,43 @@ utils.asciiToBase64 = function (aStr) {
   return base64.fromDigits(bDigits);
 };
 
-utils.modularExponentiation = function () {};
+utils.modularExponentiation = function (base, exp, modulus) {
+  var bits = exp.toString(2);
+  var accum = 1;
+  var x = base % modulus;
+  for (var i = bits.length-1; i >= 0; i--) {
+    if (bits[i] == '1') {
+      accum *= x;
+    }
+    x = (x * x) % modulus;
+  }
+  return accum % modulus;
+};
+
+utils.primeFactors = function (n) {
+  var end = Math.floor(Math.pow(n, 0.5));
+  for (var i = 2; i <= end; i++) {
+    if (n % i === 0) {
+      return utils.primeFactors(i).concat(utils.primeFactors(n/i));
+    }
+  }
+  return [n];
+};
+
+utils.totient = function (n, factors) {
+  if (!factors) {
+    factors = [];
+    utils.primeFactors(n).forEach(function (factor) {
+      if (factors.indexOf(factor) === -1) factors.push(factor);
+    });
+  }
+  var numerator = factors.reduce(function (prod, factor) {
+    return prod * (factor - 1);
+  }, n);
+  var denominator = factors.reduce(function (prod, factor) {
+    return prod * factor;
+  });
+  return numerator / denominator;
+};
 
 module.exports = utils;
