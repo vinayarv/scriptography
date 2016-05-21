@@ -9,6 +9,8 @@ var RSA = require('../src/RSA');
 
 describe('* PART IV: going public *', function () {
 
+  // HINT: check out http://imps.mcmaster.ca/courses/SE-4C03-07/wiki/wrighd/rsa_alg.html
+
   describe('`RSA._selectKeyPair`', function () {
 
     xit('utilizes `utils.totient`', function () {
