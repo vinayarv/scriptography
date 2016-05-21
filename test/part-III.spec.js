@@ -52,6 +52,7 @@ describe('* PART III: encyrption conniption *', function () {
       });
 
       xit('offsets the resulting ciphertext by the key', function () {
+        // HINT: make sure to shift the original ASCII text *before* converting to base64
         var ciphertext1 = CSC.encrypt(1, 'aAxfoo');
         expect(utils.base64ToAscii(ciphertext1)).to.equal('bBygpp');
         var ciphertext2 = CSC.encrypt(4, 'FULLSTACKhoorah');
