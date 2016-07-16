@@ -20,6 +20,12 @@ describe('* PART IV: going public *', function () {
       expect(utils.totient).to.have.been.called();
     });
 
+    xit('returns a pair of integers', function () {
+      var pair = RSA._selectKeyPair(11, 17);
+      expect(Number.isInteger(pair[0])).to.equal(true);
+      expect(Number.isInteger(pair[1])).to.equal(true);
+    });
+
     xit('given two primes that multiply to n, returns a valid numerical pair (e, d) that satisfies [ xᵉᵈ % n = x ] for any x', function () {
       var pair = RSA._selectKeyPair(11, 17);
       var phiN = utils.totient(187, [11, 17]);
