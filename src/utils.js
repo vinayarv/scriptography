@@ -72,4 +72,11 @@ utils.totient = function (n, factors) {
   return numerator / denominator;
 };
 
+utils.gcd = function (a, b) {
+  var smaller = Math.min(a, b);
+  var larger = Math.max(a, b);
+  if (smaller === 0) return larger;
+  return utils.gcd(smaller, larger % smaller);
+};
+
 module.exports = utils;

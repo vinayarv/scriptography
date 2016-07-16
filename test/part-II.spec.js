@@ -69,6 +69,12 @@ describe('* PART II: hashing it out *', function () {
       expect(hash.simple._combine('tommarvoloriddle', 'iamlordvoldemort')).to.equal('BoahoawBffsmpnAx');
     });
 
+    xit('if either string is smaller, it pads the end with the XOR identity value (the character\'s digit equivalent should be zero)', function () {
+      // the "extra" part of the larger string should remain unchanged
+      expect(hash.simple._combine('zebra', 'elephANT').slice(-3)).to.equal('ANT');
+      expect(hash.simple._combine('zooMONSTERS', 'zoo')).to.equal('aaaMONSTERS');
+    });
+
   });
 
   describe('`hash.simple.run`', function () {

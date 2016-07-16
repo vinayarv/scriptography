@@ -105,6 +105,21 @@ describe('* PREAMBLE *', function () {
 
     });
 
+    describe('`utils.gcd`', function () {
+
+      it('calculates the greatest common divisor of anything and 0', function () {
+        expect(utils.gcd(5,0)).to.equal(5);
+        expect(utils.gcd(0,30)).to.equal(30);
+      });
+
+      it('calculates the greatest common divisor for arbitrary integers', function () {
+        expect(utils.gcd(10, 40)).to.equal(10);
+        expect(utils.gcd(18, 24)).to.equal(6);
+        expect(utils.gcd(31, 49)).to.equal(1);
+      });
+
+    });
+
   });
 
 });
