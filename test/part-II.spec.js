@@ -142,7 +142,7 @@ describe('* PART II: hashing it out *', function () {
     xit('utilizes `hash.hmac` and given algorithm n times for n rounds', function () {
       chai.spy.on(hash, 'hmac');
       var spy = chai.spy();
-      hash.pbdkf2(spy, 'plain old text you know?', 'NaCl', 9, 4);
+      hash.pbkdf2(spy, 'plain old text you know?', 'NaCl', 9, 4);
       expect(hash.hmac).to.have.been.called();
       expect(spy).to.have.been.called();
       expect(hash.hmac).to.have.been.called.exactly(9);
@@ -150,12 +150,12 @@ describe('* PART II: hashing it out *', function () {
     });
 
     xit('produces a hashed result given a hashing algorithm, plaintext, salt, an amount of iterations, and an output size', function () {
-      expect(hash.pbdkf2(hash.simple.run, 'p@ssword', 'amanaplanacanalpanama', 1000, 16)).to.equal('TbebGb2aUbqaaafa');
+      expect(hash.pbkdf2(hash.simple.run, 'p@ssword', 'amanaplanacanalpanama', 1000, 16)).to.equal('TbebGb2aUbqaaafa');
     });
 
     xit('defaults to using our simple hashing algorithm', function () {
       chai.spy.on(hash.simple, 'run');
-      hash.pbdkf2('p@ssword', 'amanaplanacanalpanama', 1000, 16);
+      hash.pbkdf2('p@ssword', 'amanaplanacanalpanama', 1000, 16);
       expect(hash.simple.run).to.have.been.called();
     });
 
@@ -165,7 +165,7 @@ describe('* PART II: hashing it out *', function () {
 
   # EXTRA CREDIT
 
-  Implement the SHA-1 hashing algorithm (and if so make it the default for `hmac` and `pbdkf2`).
+  Implement the SHA-1 hashing algorithm (and if so make it the default for `hmac` and `pbkdf2`).
   You can find psuedocode on wikipedia: https://en.wikipedia.org/wiki/SHA-1#SHA-1_pseudocode.
   Or perhaps check out this for a more detailed step-by-step: http://www.metamorphosite.com/one-way-hash-encryption-sha1-data-software.
 

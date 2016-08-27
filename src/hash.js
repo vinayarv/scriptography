@@ -17,6 +17,6 @@ hash.simple.run = function () {};
 
 hash.hmac = function () {};
 
-hash.pbdkf2 = function () {};
+hash.pbkdf2 = function () {};
 
 module.exports = hash;
