@@ -88,7 +88,7 @@ describe('* PART I: random stuff, literally *', function () {
     # EXTRA CREDIT
 
     Replace `Math.random` with your own custom-built pseudorandom number generator.
-    For an example algorithm to work towards, check out: https://en.wikipedia.org/wiki/Middle-square_method.
+    For an example algorithm to work towards, check out the middle squares method: https://en.wikipedia.org/wiki/Middle-square_method.
 
     */
 

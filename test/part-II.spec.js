@@ -165,9 +165,12 @@ describe('* PART II: hashing it out *', function () {
 
   # EXTRA CREDIT
 
-  Implement the SHA-1 hashing algorithm (and if so make it the default for `hmac` and `pbkdf2`).
-  You can find psuedocode on wikipedia: https://en.wikipedia.org/wiki/SHA-1#SHA-1_pseudocode.
-  Or perhaps check out this for a more detailed step-by-step: http://www.metamorphosite.com/one-way-hash-encryption-sha1-data-software.
+  Implement a cryptographically secure hashing algorithm (and if so make it the default for `hmac` and `pbkdf2`).
+  1. RC4 is probably "simplest" (!== "simple"): http://nullprogram.com/blog/2014/07/23/
+  2. There's Blum-Micali: https://en.wikipedia.org/wiki/Blum%E2%80%93Micali_algorithm
+  3. There's also the widely-used SHA1. If you're feeling brave...
+    - You can find psuedocode on wikipedia: https://en.wikipedia.org/wiki/SHA-1#SHA-1_pseudocode.
+    - Or perhaps check out this for a more detailed step-by-step: http://www.metamorphosite.com/one-way-hash-encryption-sha1-data-software.
 
   */
 
