@@ -9,7 +9,9 @@ var RSA = require('../src/RSA');
 
 describe('* PART IV: going public *', function () {
 
-  // HINT: check out http://imps.mcmaster.ca/courses/SE-4C03-07/wiki/wrighd/rsa_alg.html
+  // HINT: check out http://imps.mcmaster.ca/courses/SE-4C03-07/wiki/wrighd/rsa_alg.html#Key_Generation_Algorithm
+  // and keep in mind that for mathematical notation, `mod` is sometimes listed to the right of the *entire* equation
+  // so something like `ed ≡ 1 (mod φ(n))` doesn't "convert" to `e * d == 1 % phi(n)`, it converts to `(e * d) % phi(n) == 1`
 
   describe('`RSA._selectKeyPair`', function () {
 
