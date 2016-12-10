@@ -1,9 +1,9 @@
 'use strict';
 
-var random = require('./random');
-var utils = require('./utils');
+const random = require('./random');
+const utils = require('./utils');
 
-var CSC = {};
+const CSC = {};
 
 CSC.generateKey = function () {};
 

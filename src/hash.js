@@ -1,9 +1,9 @@
 'use strict';
 
-var base64 = require('./base64');
-var utils = require('./utils');
+const base64 = require('./base64');
+const utils = require('./utils');
 
-var hash = {};
+const hash = {};
 
 hash.simple = {};
 

@@ -1,12 +1,12 @@
 'use strict';
 
-var chai = require('chai');
+const chai = require('chai');
 chai.use(require('chai-spies'));
-var expect = chai.expect;
+const expect = chai.expect;
 
-var ascii = require('../src/ascii');
-var base64 = require('../src/base64');
-var utils = require('../src/utils');
+const ascii = require('../src/ascii');
+const base64 = require('../src/base64');
+const utils = require('../src/utils');
 
 describe('* PREAMBLE *', function () {
 
@@ -14,30 +14,30 @@ describe('* PREAMBLE *', function () {
   describe('there and back again, a string-encoding tale', function () {
 
     it('`ascii.toDigits`', function () {
-      var digits = ascii.toDigits('helpful');
+      const digits = ascii.toDigits('helpful');
       expect(digits).to.eql([104, 101, 108, 112, 102, 117, 108]);
     });
 
     it('`ascii.fromDigits`', function () {
-      var str = ascii.fromDigits([119, 104, 105, 115, 112, 101, 114, 115]);
+      const str = ascii.fromDigits([119, 104, 105, 115, 112, 101, 114, 115]);
       expect(str).to.equal('whispers');
     });
 
     it('`base64.toDigits`', function () {
-      var digits = base64.toDigits('ax$B_32');
+      const digits = base64.toDigits('ax$B_32');
       expect(digits).to.eql([0, 23, 63, 27, 62, 55, 54]);
     });
 
     it('`base64.fromDigits`', function () {
-      var str = base64.fromDigits([7, 8, 18, 54, 8, 15, 4]);
+      const str = base64.fromDigits([7, 8, 18, 54, 8, 15, 4]);
       expect(str).to.equal('his2ipe');
     });
 
     it('`utils.base64ToAscii` and `utils.asciiToBase64`', function () {
-      var base64Encoding = utils.asciiToBase64('the quick brown fox jumps over the lazy dog');
+      const base64Encoding = utils.asciiToBase64('the quick brown fox jumps over the lazy dog');
       expect(base64Encoding).to.not.equal('the quick brown fox jumps over the lazy dog');
       expect(utils.base64ToAscii(base64Encoding)).to.equal('the quick brown fox jumps over the lazy dog');
-      var asciiEncoding = utils.base64ToAscii('$1337_FoR_LiFe$');
+      const asciiEncoding = utils.base64ToAscii('$1337_FoR_LiFe$');
       expect(asciiEncoding).to.not.equal('$1337_FoR_LiFe$');
       expect(utils.asciiToBase64(asciiEncoding)).to.equal('$1337_FoR_LiFe$');
     });

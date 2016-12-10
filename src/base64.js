@@ -1,20 +1,20 @@
 'use strict';
 
-var base64 = {};
+const base64 = {};
 
 base64._charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_$';
 
 base64.toDigits = function (bStr) {
-  var digits = [];
-  for (var i = 0; i < bStr.length; i++) {
-    var digit = base64._charSet.indexOf(bStr[i]);
+  const digits = [];
+  for (let i = 0; i < bStr.length; i++) {
+    const digit = base64._charSet.indexOf(bStr[i]);
     digits.push(digit);
   }
   return digits;
 };
 
 base64.fromDigits = function (digits) {
-  var bStr = '';
+  let bStr = '';
   digits.forEach(function (digit) {
     bStr += base64._charSet[digit];
   });

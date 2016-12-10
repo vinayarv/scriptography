@@ -1,12 +1,12 @@
 'use strict';
 
-var base64 = require('./base64');
+const base64 = require('./base64');
 
-var random = {};
+const random = {};
 
 random.integer = function () {};
 
-var charSet = base64._charSet;
+const charSet = base64._charSet;
 random.base64 = function () {};
 
 module.exports = random;

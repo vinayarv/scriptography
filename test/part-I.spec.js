@@ -1,14 +1,14 @@
 'use strict';
 
-var chai = require('chai');
+const chai = require('chai');
 chai.use(require('chai-spies'));
-var expect = chai.expect;
+const expect = chai.expect;
 
-var random = require('../src/random');
+const random = require('../src/random');
 
 describe('* PART I: random stuff, literally *', function () {
 
-  var originalMathRandom = Math.random;
+  const originalMathRandom = Math.random;
   afterEach(function () {
     Math.random = originalMathRandom;
   });
@@ -64,7 +64,7 @@ describe('* PART I: random stuff, literally *', function () {
     });
 
     xit('generates a string of the given size', function () {
-      var randStr = random.base64(8);
+      const randStr = random.base64(8);
       expect(randStr).to.be.a('string');
       expect(randStr).to.have.length(8);
       expect(random.base64(101)).to.have.length(101);
@@ -73,7 +73,7 @@ describe('* PART I: random stuff, literally *', function () {
 
     xit('generates a random sequence of characters from our base64 character set', function () {
       // make sure to utilize `base64._charSet` (which is already defined over in base64.js)
-      var fakeVals = [4/64, 18/64, 8/64, 17/64, 15/64, 17/64, 20/64, 18/64];
+      const fakeVals = [4/64, 18/64, 8/64, 17/64, 15/64, 17/64, 20/64, 18/64];
       Math.random = function () {
         return fakeVals.pop();
       };

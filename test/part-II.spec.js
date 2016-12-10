@@ -1,12 +1,12 @@
 'use strict';
 
-var chai = require('chai');
+const chai = require('chai');
 chai.use(require('chai-spies'));
-var expect = chai.expect;
+const expect = chai.expect;
 
-var base64 = require('../src/base64');
-var utils = require('../src/utils');
-var hash = require('../src/hash');
+const base64 = require('../src/base64');
+const utils = require('../src/utils');
+const hash = require('../src/hash');
 
 describe('* PART II: hashing it out *', function () {
 
@@ -14,7 +14,7 @@ describe('* PART II: hashing it out *', function () {
 
     xit('increases the string to at least the given length', function () {
       expect(hash.simple._pad).to.be.a('function');
-      var padded = hash.simple._pad('words', 10);
+      const padded = hash.simple._pad('words', 10);
       expect(padded).to.be.a('string');
       expect(padded).to.have.length(10);
     });
@@ -48,7 +48,7 @@ describe('* PART II: hashing it out *', function () {
 
     xit('accepts two equal length base64 strings and returns one of the same length', function () {
       expect(hash.simple._combine).to.be.a('function');
-      var combined = hash.simple._combine('foo', 'bar');
+      const combined = hash.simple._combine('foo', 'bar');
       expect(combined).to.be.a('string');
       expect(combined).to.have.length(3);
     });
@@ -107,7 +107,7 @@ describe('* PART II: hashing it out *', function () {
     });
 
     xit('converts an ASCII string (plaintext) to a hashed base64 string of the given length', function () {
-      var hashedResult = hash.simple.run('I solemny swear I am up to no good', 10);
+      const hashedResult = hash.simple.run('I solemny swear I am up to no good', 10);
       expect(hashedResult).to.have.length(10);
       // this specific result is particular to our simple hashing algorithm
       // a different hashing algorithm would not produce the same hashed output
@@ -122,7 +122,7 @@ describe('* PART II: hashing it out *', function () {
 
     xit('runs the given hashing algorithm using the secret key, plaintext, and given length', function () {
       expect(hash.hmac).to.be.a('function');
-      var spy = chai.spy();
+      const spy = chai.spy();
       hash.hmac(spy, 'tongiscool', 'a plain text message in here', 16);
       expect(spy).to.have.been.called();
     });
@@ -130,7 +130,7 @@ describe('* PART II: hashing it out *', function () {
     xit('defaults to using our simple hashing algorithm', function () {
       // keep in mind that the key should be prepended to the plaintext
       chai.spy.on(hash.simple, 'run');
-      var hashedResult = hash.hmac('tongiscool', 'a plain text message in here', 16);
+      const hashedResult = hash.hmac('tongiscool', 'a plain text message in here', 16);
       expect(hash.simple.run).to.have.been.called();
       expect(hashedResult).to.equal('_bWbGbMa0bRbcaca');
     });
@@ -141,7 +141,7 @@ describe('* PART II: hashing it out *', function () {
 
     xit('utilizes `hash.hmac` and given algorithm n times for n rounds', function () {
       chai.spy.on(hash, 'hmac');
-      var spy = chai.spy();
+      const spy = chai.spy();
       hash.pbkdf2(spy, 'plain old text you know?', 'NaCl', 9, 4);
       expect(hash.hmac).to.have.been.called();
       expect(spy).to.have.been.called();

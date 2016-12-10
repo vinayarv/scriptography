@@ -1,9 +1,9 @@
 'use strict';
 
-var utils = require('./utils');
-var ascii = require('./ascii');
+const utils = require('./utils');
+const ascii = require('./ascii');
 
-var RSA = {};
+const RSA = {};
 
 RSA._selectKeyPair = function () {};
 

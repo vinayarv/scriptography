@@ -1,14 +1,14 @@
 'use strict';
 
-var ascii = require('./ascii');
-var base64 = require('./base64');
+const ascii = require('./ascii');
+const base64 = require('./base64');
 
-var utils = {};
+const utils = {};
 
 utils.base64ToAscii = function (bStr) {
-  var bDigits = base64.toDigits(bStr);
-  var aDigits = [];
-  for (var i = 0; i < bDigits.length; i+=2) {
+  const bDigits = base64.toDigits(bStr);
+  const aDigits = [];
+  for (let i = 0; i < bDigits.length; i+=2) {
     aDigits.push(bDigits[i] + 64 * (bDigits[i+1] || 0));
   }
   if (bDigits[bDigits.length-1] === 0) {
@@ -18,9 +18,9 @@ utils.base64ToAscii = function (bStr) {
 };
 
 utils.asciiToBase64 = function (aStr) {
-  var aDigits = ascii.toDigits(aStr);
-  var bDigits = [];
-  for (var i = 0; i < aDigits.length; i++) {
+  const aDigits = ascii.toDigits(aStr);
+  const bDigits = [];
+  for (let i = 0; i < aDigits.length; i++) {
     bDigits.push(aDigits[i] % 64);
     bDigits.push(Math.floor(aDigits[i] / 64));
   }
@@ -34,10 +34,10 @@ utils.asciiToBase64 = function (aStr) {
 };
 
 utils.modularExponentiation = function (base, exp, modulus) {
-  var bits = exp.toString(2);
-  var accum = 1;
-  var x = base % modulus;
-  for (var i = bits.length-1; i >= 0; i--) {
+  const bits = exp.toString(2);
+  let accum = 1;
+  let x = base % modulus;
+  for (let i = bits.length-1; i >= 0; i--) {
     if (bits[i] == '1') {
       accum *= x;
     }
@@ -47,8 +47,8 @@ utils.modularExponentiation = function (base, exp, modulus) {
 };
 
 utils.primeFactors = function (n) {
-  var end = Math.floor(Math.pow(n, 0.5));
-  for (var i = 2; i <= end; i++) {
+  const end = Math.floor(Math.pow(n, 0.5));
+  for (let i = 2; i <= end; i++) {
     if (n % i === 0) {
       return utils.primeFactors(i).concat(utils.primeFactors(n/i));
     }
@@ -63,18 +63,18 @@ utils.totient = function (n, factors) {
       if (factors.indexOf(factor) === -1) factors.push(factor);
     });
   }
-  var numerator = factors.reduce(function (prod, factor) {
+  const numerator = factors.reduce(function (prod, factor) {
     return prod * (factor - 1);
   }, n);
-  var denominator = factors.reduce(function (prod, factor) {
+  const denominator = factors.reduce(function (prod, factor) {
     return prod * factor;
   });
   return numerator / denominator;
 };
 
 utils.gcd = function (a, b) {
-  var smaller = Math.min(a, b);
-  var larger = Math.max(a, b);
+  const smaller = Math.min(a, b);
+  const larger = Math.max(a, b);
   if (smaller === 0) return larger;
   return utils.gcd(smaller, larger % smaller);
 };
