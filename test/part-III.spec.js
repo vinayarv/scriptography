@@ -139,7 +139,7 @@ describe('* PART III: encyrption conniption *', function () {
         const plaintext = 'A humorous but secret message';
         const ciphertext = OTP.encrypt(utils.asciiToBase64(plaintext), plaintext);
         expect(ciphertext).to.be.a('string');
-        for (const i = 0; i < ciphertext.length; i++) {
+        for (let i = 0; i < ciphertext.length; i++) {
           // any number XORed with itself outputs 0, e.g. 1034 ^ 1034 === 0, and 0 corresponds to base64 character 'a', so we get all 'a's
           expect(ciphertext[i]).to.equal('a');
         }
@@ -169,7 +169,7 @@ describe('* PART III: encyrption conniption *', function () {
         const ciphertext = '1u32f1kjf';
         const plaintext = OTP.decrypt(ciphertext, ciphertext);
         expect(plaintext).to.be.a('string');
-        for (const i = 0; i < plaintext.length; i++) {
+        for (let i = 0; i < plaintext.length; i++) {
           expect(plaintext.charCodeAt(i)).to.equal(0);
         }
         // totally different example
