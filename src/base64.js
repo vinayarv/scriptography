@@ -1,5 +1,3 @@
-'use strict';
-
 const base64 = {};
 
 base64._charSet = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_$';

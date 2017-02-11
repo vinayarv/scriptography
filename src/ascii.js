@@ -1,5 +1,3 @@
-'use strict';
-
 const ascii = {};
 
 ascii.toDigits = function (aStr) {

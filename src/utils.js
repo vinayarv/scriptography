@@ -1,5 +1,3 @@
-'use strict';
-
 const ascii = require('./ascii');
 const base64 = require('./base64');
 

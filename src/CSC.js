@@ -1,5 +1,3 @@
-'use strict';
-
 const random = require('./random');
 const utils = require('./utils');
 

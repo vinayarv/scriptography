@@ -1,5 +1,3 @@
-'use strict';
-
 const base64 = require('./base64');
 
 const random = {};
