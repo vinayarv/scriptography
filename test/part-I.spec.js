@@ -81,14 +81,83 @@ describe('* PART I: random stuff, literally *', function () {
       expect(random.base64(8)).to.equal('surprise');
     });
 
-    /*
+  });
 
-    # EXTRA CREDIT
+  describe('middle-square method', function () {
 
-    Replace `Math.random` with your own custom-built pseudorandom number generator.
-    For an example algorithm to work towards, check out the middle squares method: https://en.wikipedia.org/wiki/Middle-square_method.
+    // -------------
+    // *** BONUS ***
+    // -------------
 
-    */
+    // Make your own PSRNG using the middle-square method: https://en.wikipedia.org/wiki/Middle-square_method.
+
+    xit('`random.middleSquare` is an object', function () {
+      expect(random.middleSquare).to.be.an('object');
+    });
+
+    xit('`random.middleSquare.createGenerator` is a function that takes a seed (a string of decimal digits) and returns a random number generator (a function)', function () {
+      expect(random.middleSquare.createGenerator).to.be.a('function');
+      const prng = random.middleSquare.createGenerator('10');
+      expect(prng).to.be.a('function');
+    });
+
+    describe('random number generator', function () {
+
+      xit('accepts no arguments and returns a string (of decimal digits)', function () {
+        const prng = random.middleSquare.createGenerator('32');
+        const result = prng();
+        expect(result).to.be.a('string');
+      });
+
+      xit('outputs a string that is always the same length as the seed', function () {
+        for (let i = 1; i < 10; i++) {
+          const seed = '9'.repeat(i);
+          const prng = random.middleSquare.createGenerator(seed);
+          const result = prng();
+          expect(result.length).to.equal(seed.length);
+        }
+      });
+
+      xit('outputs the middle digits of its seed squared', function () {
+        const prng = random.middleSquare.createGenerator('32');
+        // 32 squared is 1024, the middle two digits are 02
+        const num = prng();
+        expect(num).to.equal('02');
+      });
+
+      xit('uses the previous output as the next seed', function () {
+        const prng = random.middleSquare.createGenerator('42');
+        // 42 squared is 1764, the middle two digits are 76
+        prng();
+        // 76 squared is 5776, the middle two digits are 77
+        const second = prng();
+        expect(second).to.equal('77');
+        // 77 squared is 5929, the middle two digits are 92
+        const third = prng();
+        expect(third).to.equal('92');
+        // 92 squared is 8464, the middle two digits are 46
+        const fourth = prng();
+        expect(fourth).to.equal('46');
+        // 46 squared is 2116, the middle two digits are 11
+        const fifth = prng();
+        expect(fifth).to.equal('11');
+      });
+
+      xit('can pad left zeroes as needed to maintain the seed size', function () {
+        const prng = random.middleSquare.createGenerator('03');
+        // 3 squared is 9, the middle two digits are 09
+        const num = prng();
+        expect(num).to.equal('09');
+      });
+
+      xit('can deal with odd digit lengths', function () {
+        const prng = random.middleSquare.createGenerator('15');
+        // 15 squared is 225, the middle two digits are 22 or 25
+        const num = prng();
+        expect(num).to.be.oneOf(['22', '25']);
+      });
+
+    });
 
   });
 
