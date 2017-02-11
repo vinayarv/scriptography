@@ -1,5 +1,6 @@
 const random = require('./random');
 const utils = require('./utils');
+const ascii = require('./ascii');
 
 const CSC = {};
 
