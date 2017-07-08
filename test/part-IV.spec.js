@@ -13,20 +13,20 @@ describe('* PART IV: going public *', function () {
 
   describe('`RSA._selectKeyPair`', function () {
 
-    xit('utilizes `utils.totient`', function () {
+    it('utilizes `utils.totient`', function () {
       expect(RSA._selectKeyPair).to.be.a('function');
       chai.spy.on(utils, 'totient');
       RSA._selectKeyPair(11, 17);
       expect(utils.totient).to.have.been.called();
     });
 
-    xit('returns a pair of integers', function () {
+    it('returns a pair of integers', function () {
       const pair = RSA._selectKeyPair(11, 17);
       expect(Number.isInteger(pair[0])).to.equal(true);
       expect(Number.isInteger(pair[1])).to.equal(true);
     });
 
-    xit('given two primes that multiply to n, returns a valid numerical pair (e, d) that satisfies [ xᵉᵈ % n = x ] for any x', function () {
+    it('given two primes that multiply to n, returns a valid numerical pair (e, d) that satisfies [ xᵉᵈ % n = x ] for any x', function () {
       const pair = RSA._selectKeyPair(11, 17);
       const phiN = utils.totient(187, [11, 17]);
       expect(pair[0] * pair[1] % phiN).to.equal(1);
