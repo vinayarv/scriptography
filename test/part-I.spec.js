@@ -13,14 +13,14 @@ describe('* PART I: random stuff, literally *', function () {
 
   describe('`random.integer`', function () {
 
-    xit('uses `Math.random`', function () {
+    it('uses `Math.random`', function () {
       expect(random.integer).to.be.a('function');
       chai.spy.on(Math, 'random');
       random.integer(0,1000);
       expect(Math.random).to.have.been.called();
     });
 
-    xit('given a min and max, generates an integer betwixt them', function () {
+    it('given a min and max, generates an integer betwixt them', function () {
       Math.random = function () {
         return 0;
       };
@@ -35,7 +35,7 @@ describe('* PART I: random stuff, literally *', function () {
       expect(random.integer(0,10)).to.equal(4);
     });
 
-    xit('min defaults to zero', function () {
+    it('min defaults to zero', function () {
       Math.random = function () {
         return 0;
       };
@@ -54,14 +54,14 @@ describe('* PART I: random stuff, literally *', function () {
 
   describe('`random.base64`', function () {
 
-    xit('utilizes `random.integer`', function () {
+    it('utilizes `random.integer`', function () {
       expect(random.base64).to.be.a('function');
       chai.spy.on(random, 'integer');
       random.base64(16);
       expect(random.integer).to.have.been.called();
     });
 
-    xit('generates a string of the given size', function () {
+    it('generates a string of the given size', function () {
       const randStr = random.base64(8);
       expect(randStr).to.be.a('string');
       expect(randStr).to.have.length(8);
@@ -69,7 +69,7 @@ describe('* PART I: random stuff, literally *', function () {
       expect(random.base64(58)).to.have.length(58);
     });
 
-    xit('generates a random sequence of characters from our base64 character set', function () {
+    it('generates a random sequence of characters from our base64 character set', function () {
       // make sure to utilize `base64._charSet` (which is already defined over in base64.js)
       const fakeVals = [4/64, 18/64, 8/64, 17/64, 15/64, 17/64, 20/64, 18/64];
       Math.random = function () {
@@ -78,7 +78,7 @@ describe('* PART I: random stuff, literally *', function () {
       // the assertion below may be a little over-specific
       // so if it fails but you are confident your random string generator is working in its own way
       // feel free to comment it out
-      expect(random.base64(8)).to.equal('surprise');
+      // expect(random.base64(8)).to.equal('surprise');
     });
 
   });
@@ -91,11 +91,11 @@ describe('* PART I: random stuff, literally *', function () {
 
     // Make your own PSRNG using the middle-square method: https://en.wikipedia.org/wiki/Middle-square_method.
 
-    xit('`random.middleSquare` is an object', function () {
+    it('`random.middleSquare` is an object', function () {
       expect(random.middleSquare).to.be.an('object');
     });
 
-    xit('`random.middleSquare.createGenerator` is a function that takes a seed (a string of decimal digits) and returns a random number generator (a function)', function () {
+    it('`random.middleSquare.createGenerator` is a function that takes a seed (a string of decimal digits) and returns a random number generator (a function)', function () {
       expect(random.middleSquare.createGenerator).to.be.a('function');
       const prng = random.middleSquare.createGenerator('10');
       expect(prng).to.be.a('function');
