@@ -5,7 +5,15 @@ const hash = {};
 
 hash.simple = {};
 
-hash.simple._pad = function () {};
+hash.simple._pad = function (str, length) {
+  var paddedStr = str;
+  var revStr = str.split('').reverse().join('');
+  console.log(revStr);
+  while (paddedStr.length < length){
+    paddedStr = paddedStr + revStr;
+  }
+  return paddedStr;
+};
 
 hash.simple._partition = function () {};
 

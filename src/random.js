@@ -27,4 +27,15 @@ random.base64 = function(len) {
   return randomStr.join("");
 };
 
+random.middleSquare = {
+  createGenerator: function(seed){
+    return function() {
+      var number = random.integer(Number(seed));
+      if(number.length === 2)
+         return number;
+    }
+  }
+};
+
+
 module.exports = random;

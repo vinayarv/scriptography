@@ -10,14 +10,14 @@ describe('* PART II: hashing it out *', function () {
 
   describe('`hash.simple._pad`', function () {
 
-    xit('increases the string to at least the given length', function () {
+    it('increases the string to at least the given length', function () {
       expect(hash.simple._pad).to.be.a('function');
       const padded = hash.simple._pad('words', 10);
       expect(padded).to.be.a('string');
       expect(padded).to.have.length(10);
     });
 
-    xit('does so by concatenating the string to its reverse until it\'s big enough', function () {
+    it('does so by concatenating the string to its reverse until it\'s big enough', function () {
       expect(hash.simple._pad('something', 18)).to.equal('somethinggnihtemos');
       // will go OVER the pad length
       expect(hash.simple._pad('foobar', 7)).to.equal('foobarraboof');
@@ -29,13 +29,13 @@ describe('* PART II: hashing it out *', function () {
 
   describe('`hash.simple._partition`', function () {
 
-    xit('divides the string into n pieces, each of the given length', function () {
+    it('divides the string into n pieces, each of the given length', function () {
       expect(hash.simple._partition).to.be.a('function');
       expect(hash.simple._partition('abc', 1)).to.eql(['a', 'b', 'c']);
       expect(hash.simple._partition('somethinglongernow', 3)).to.eql(['som', 'eth', 'ing', 'lon', 'ger', 'now']);
     });
 
-    xit('the final string is the remainder, and may be less than the given length', function () {
+    it('the final string is the remainder, and may be less than the given length', function () {
       expect(hash.simple._partition('odd', 2)).to.eql(['od', 'd']);
       expect(hash.simple._partition('thishasanevennumberofletters', 5)).to.eql(['thish', 'asane', 'vennu', 'mbero', 'flett', 'ers']);
     });
